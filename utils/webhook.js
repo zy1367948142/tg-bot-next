@@ -18,12 +18,13 @@ export default async function handler(req, res) {
         if (text.startsWith("/start")) {
             await helpCommand(chatId)
         }
-        else if (text.startsWith("/ping")){
+        else if (text.startsWith("/bind")){
             await bindCommand(chatId);
         }
-        else if (text.startsWith("/cricket")) {
+        else if (text.startsWith("/create")) {
             await createCommand(chatId);
-        }else if (text.startsWith("/help")){
+        }
+        else if (text.startsWith("/help")){
             await helpCommand(chatId);
         }
         else {

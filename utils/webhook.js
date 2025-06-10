@@ -1,4 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+//Webhook 请求
 
 import { createCommand } from "@/tg/commands/create";
 import { helpCommand } from "@/tg/commands/help";
@@ -13,8 +14,11 @@ export default async function handler(req, res) {
     if (req.method=="POST") {
         const chatId = req.body.message.chat.id;
         const text = req.body.message.text;
+
         console.log("----ChatID-----> ", chatId);
         console.log("----Text----->", text);
+        console.log("----userid----->", req.body.message.use.id);
+
         if (text.startsWith("/start")) {
             await helpCommand(chatId)
         }

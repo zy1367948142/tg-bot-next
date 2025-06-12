@@ -5,6 +5,7 @@ import {unBindCommand} from "@/utils/commands/unbind";
 import {balanceCommand} from "@/utils/commands/balance";
 import {helpCommand} from "@/utils/commands/help";
 import {sendMessage} from "@/utils/telegram";
+import {groupCommand} from "@/utils/commands/group";
 
 export const config = {
     maxDuration: 60,

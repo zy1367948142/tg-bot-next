@@ -1,5 +1,4 @@
 {
-  "name": "tg-bot",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -12,11 +11,6 @@
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106",
     "next": "15.0.3",
-    "cheerio": "^1.0.0",
-    "node-telegram-bot-api": "^0.66.0"
-  },
- "repository":{
-    "type":"git",
-    "url": "https://github.com/yagop/node -telegram-bot-api.git"
- }
+    "cheerio": "^1.0.0"
+  }
 }

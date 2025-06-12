@@ -1,1 +1,1 @@
-# tg-bot-next
+Telegram Bot using Next js and Webhooks.

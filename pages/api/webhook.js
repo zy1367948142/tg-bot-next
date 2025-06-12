@@ -18,6 +18,8 @@ export default async function handler(req, res) {
         console.log("----text---->", text);
         console.log("----userId---->", userId);
         if (text.startsWith("/start")) {
+            await helpCommand(chatId)
+        } else if (text.startsWith("/create")) {
             await createCommand(chatId, userId)
         } else if (text.startsWith("/bind")) {
             await bindCommand(chatId, userId, text);

@@ -10,7 +10,7 @@ export const config = {
 };
 
 export default async function handler(req, res) {
-    if (req.method === "POST") {
+    if (req.method == "POST") {
         const chatId = req.body.message.chat.id;
         const text = req.body.message.text;
         const userId = req.body.message.from.id;

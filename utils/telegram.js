@@ -1,4 +1,3 @@
-
 const BOT_TOKEN = "7606685035:AAH2EM64oMEPd4iXTuv2i23cZtECXfhokFY";
 // msg, chatd
 const TELEGRAM_API_URL = `https://api.telegram.org/bot${BOT_TOKEN}`

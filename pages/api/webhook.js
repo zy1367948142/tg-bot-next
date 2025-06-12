@@ -1,34 +1,37 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { cricketCommand } from "@/utils/commands/cricket";
-import { helpCommand } from "@/utils/commands/help";
-import { pingCommand } from "@/utils/commands/ping";
-import { sendMessage } from "@/utils/telegram";
+import {createCommand} from "@/utils/commands/create";
+import {bindCommand} from "@/utils/commands/bind";
+import {unBindCommand} from "@/utils/commands/unbind";
+import {balanceCommand} from "@/utils/commands/balance";
+import {helpCommand} from "@/utils/commands/help";
+import {sendMessage} from "@/utils/telegram";
 
 export const config = {
-  maxDuration: 60,
+    maxDuration: 60,
 };
 
 export default async function handler(req, res) {
-  if (req.method=="POST") {
-    const chatId = req.body.message.chat.id;
-    const text = req.body.message.text;
-    console.log("ChatID", chatId);
-    console.log("text", text);
-    if (text.startsWith("/start") || text.startsWith("/help") ) {
-      await helpCommand(chatId)
+    if (req.method === "POST") {
+        const chatId = req.body.message.chat.id;
+        const text = req.body.message.text;
+        const userId = req.body.message.from.id;
+        console.log("----chatId----> ", chatId);
+        console.log("----text---->", text);
+        console.log("----userId---->", userId);
+        if (text.startsWith("/start")) {
+            await createCommand(chatId, userId)
+        } else if (text.startsWith("/bind")) {
+            await bindCommand(chatId, userId, text);
+        } else if (text.startsWith("/unbind")) {
+            await unBindCommand(chatId, userId, text);
+        } else if (text.startsWith("/money")) {
+            await balanceCommand(chatId, userId);
+        } else if (text.startsWith("/help")) {
+            await helpCommand(chatId);
+        }
+        res.status(200).send("OK")
+    } else {
+        res.setHeader('Allow', ['POST']);
+        res.status(500).send('Method Not Allowed');
     }
-    else if (text.startsWith("/ping")){
-      await pingCommand(chatId);
-    }
-    else if (text.startsWith("/cricket")) {
-      await cricketCommand(chatId);
-    }
-    else {
-      await sendMessage(chatId,text);
-    }
-    res.status(200).send("OK")
-  } else {
-    res.setHeader('Allow', ['POST']);
-    res.status(500).send('Method Not Allowed');
-  }
 }
